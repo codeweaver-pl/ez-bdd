@@ -1,6 +1,6 @@
 {
   "name": "ez-bdd",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "dependencies": {
     "gherkin": "~2.12",
     "js-beautify": "~1.5",
@@ -10,7 +10,10 @@
     "underscore": "latest",
     "jasmine-custom-message": "avrelian/jasmine-custom-message#b33f3b1c9e"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine-node": "2.0.0-beta4",
+    "jasmine-reporters": "2.0.6"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/waxxfetish/ez-bdd"
@@ -32,7 +35,9 @@
   "_npmVersion": "1.3.21",
   "directories": {},
   "description": "E2E/BDD Protractor wrapper API",
-  "scripts": {},
+  "scripts": {
+    "test": "jasmine-node ./spec"
+  },
   "bin": {
     "ezbdd": "bin/ezbdd.js"
   }
