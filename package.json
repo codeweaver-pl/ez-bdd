@@ -1,6 +1,6 @@
 {
   "name": "ez-bdd",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "dependencies": {
     "gherkin": "~2.12",
     "js-beautify": "~1.5",
