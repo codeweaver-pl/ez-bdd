@@ -34,7 +34,7 @@
   "main": "src/ez-bdd.js",
   "_npmVersion": "1.3.21",
   "directories": {},
-  "description": "E2E/BDD Protractor wrapper API",
+  "description": "BDD Toolkit",
   "scripts": {
     "test": "jasmine-node ./spec"
   },

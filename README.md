@@ -1,24 +1,45 @@
 ez-bdd
 ====
 
-E2E/BDD Protractor wrapper API
+BDD Toolkit 
 
 Installation
 ----
 
-    npm install ez-bdd
+Install in project dependencies
+
+    npm install --save ez-bdd
 
 Or if you want to use the module from CLI:
 
-    npm install -g ez-bdd
+    #install globally
+    npm install -g ez-bdd 
 
 Usage
 ====
 
-```javascript
-var ezBdd = require('ez-bdd');
+```javascript 
+    //node environment
+    var ezBdd = require('ez-bdd'),
+        feature = ezBdd.parseGherkin(featureString),
+        specString = ezBdd.featureAsSpec(feature);
 ```
 
+```javascript 
+    //test runner environment
+    var ezBdd = require('ez-bdd'),
+       ezBdd.allHailThePopupOfDoom() //
+           ezBdd.currentUrl()//
+           ezBdd.goTo() //
+           ezBdd.ui() //
+```
+
+```shell
+    echo "generate jasmine spec template"
+    echo "path-to-jasmine-spec is optional"
+    ezbdd path-to-gherkin.feature path-to-jasmine-spec.spec.js  
+```
+ 
 LICENSE
 ===
 
