@@ -11,7 +11,7 @@
     "jasmine-custom-message": "avrelian/jasmine-custom-message#b33f3b1c9e"
   },
   "devDependencies": {
-    "jasmine-node": "2.0.0-beta4",
+    "jasmine-node": "2.0.0",
     "jasmine-reporters": "2.0.6"
   },
   "repository": {
