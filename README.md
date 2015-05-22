@@ -3,6 +3,8 @@ ez-bdd
 
 BDD Toolkit 
 
+[![Dependency Status](https://www.versioneye.com/user/projects/555f0577634daa5dc8001055/badge.svg?style=flat)](https://www.versioneye.com/user/projects/555f0577634daa5dc8001055)
+
 Installation
 ----
 
