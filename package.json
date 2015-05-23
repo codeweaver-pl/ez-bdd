@@ -2,13 +2,14 @@
   "name": "ez-bdd",
   "version": "0.5.0",
   "dependencies": {
+    "codecov.io": "^0.1.2",
     "gherkin": "~2.12",
+    "jasmine-custom-message": "~0.7.3",
     "js-beautify": "~1.5",
     "npmlog": "~1.2",
     "protractor": "~1.8",
     "sprintf": "latest",
-    "underscore": "latest",
-    "jasmine-custom-message": "avrelian/jasmine-custom-message#b33f3b1c9e"
+    "underscore": "latest"
   },
   "devDependencies": {
     "jasmine-node": "2.0.0",
