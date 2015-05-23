@@ -3,4 +3,4 @@ sudo: false
 node_js:
   - '0.10'
   - '0.11'
-script: make test-codecov.io
+#script: make test-codecov.io
