@@ -1,6 +1,8 @@
 ez-bdd
 ====
 
+[![Join the chat at https://gitter.im/waxxfetish/ez-bdd](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/waxxfetish/ez-bdd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 BDD Toolkit 
 
 [![Dependency Status](https://www.versioneye.com/user/projects/555f0577634daa5dc8001055/badge.svg?style=flat)](https://www.versioneye.com/user/projects/555f0577634daa5dc8001055)
