@@ -1,7 +1,7 @@
 "use strict";
 
-var _ = require('lodash'),
-  sprintf = require('sprintf');
+var _       = require('underscore'),
+    sprintf = require('sprintf');
 
 require('jasmine-custom-message');
 
@@ -21,24 +21,26 @@ var oldSince = global.since;
 function newSince(message) {
   return oldSince(
     function () {
-      return /<[^>]*>/.test(message) ? sprintf("%s [expected: %s/actual: %s]", message, this.actual, this.expected) : message;
+      return /<[^>]*>/.test(message) ? sprintf("%s [expected: %s/actual: %s]", message, this.actual,
+                                               this.expected) : message;
     });
 }
 
 global.since = newSince;
-global.Then = newSince;
-global.And = newSince;
-global.But = newSince;
+global.Then  = newSince;
+global.And   = newSince;
+global.But   = newSince;
 
-  function wrapCases(specGroupName, examples) {
+function wrapCases(specGroupName, examples) {
 
   return new Cases(examples);
 
   function Cases(data) {
     this.examples = data;
-    this.it = function (specFunc) {
+    this.it       = function (specFunc) {
       _.each(this.examples, function (row, index, rows) {
-        global.it(sprintf('%s [%d/%d/%s]', specGroupName, index + 1, rows.length, JSON.stringify(row)), _.partial(specFunc, row));
+        global.it(sprintf('%s [%d/%d/%s]', specGroupName, index + 1, rows.length, JSON.stringify(row)),
+                  _.partial(specFunc, row));
       });
     };
   }

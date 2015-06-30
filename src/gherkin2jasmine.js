@@ -1,22 +1,22 @@
 'use strict';
 
-var _ = require('lodash'),
-  log = require('npmlog');
+var _   = require('underscore'),
+    log = require('npmlog');
 
 log.heading = '[g2j]';
 
 function toJasmine(spec) {
 
   return "'use strict';" + "\n" +
-    toDescribe(spec);
+         toDescribe(spec);
 
   function toDescribe(spec) {
     return "describe('" + spec.name + "', " +
-      toFunctionWrapped("\n" +
-        (spec.description ? toBlockComment(spec.description)  + "\n\n" : '') +
-        (spec.background ? toBeforeEach(spec.background) + "\n\n" : '') +
-        toIts(spec.scenarios)
-      ) + ");";
+           toFunctionWrapped("\n" +
+           (spec.description ? toBlockComment(spec.description) + "\n\n" : '') +
+           (spec.background ? toBeforeEach(spec.background) + "\n\n" : '') +
+           toIts(spec.scenarios)
+           ) + ");";
 
     function toStepComment(step) {
 
@@ -37,8 +37,8 @@ function toJasmine(spec) {
 
     function toBlockComment(comment) {
       return "/*\n" +
-        comment + "\n" +
-        "*/";
+             comment + "\n" +
+             "*/";
     }
 
     function toComment(comment) {
@@ -48,7 +48,7 @@ function toJasmine(spec) {
     function toFunctionWrapped(body, params) {
 
       var content,
-        argString;
+          argString;
 
       if (_.isString(body)) {
         content = body;
@@ -61,8 +61,8 @@ function toJasmine(spec) {
       argString = _.isArray(params) ? params.join(',') : _.isString(params) ? params : '';
 
       return "function(" + argString + ") {\n" +
-        content + "\n" +
-        "}";
+             content + "\n" +
+             "}";
     }
 
     function toBeforeEach(background) {
@@ -89,11 +89,11 @@ function toJasmine(spec) {
           }
 
           return "cases('" + scenario.name + "', " +
-            toExamples(scenario) +
-            ").it(" + toFunctionWrapped(
+                 toExamples(scenario) +
+                 ").it(" + toFunctionWrapped(
               toSteps(scenario.steps), 'example'
             ) +
-            ");";
+                 ");";
         }
 
         return scenario.examples ? toScenarioOutline(scenario) : toScenario(scenario);

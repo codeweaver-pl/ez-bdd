@@ -1,7 +1,7 @@
 "use strict";
 
-var _             = require('lodash'),
-    $s            = require('./selectors');
+var _  = require('underscore'),
+    $s = require('./selectors');
 
 global = new Function('return this')(); // jshint ignore:line
 

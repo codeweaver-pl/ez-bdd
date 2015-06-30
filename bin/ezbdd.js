@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 "use strict";
-var app = require('ez-bdd'),
-  fs = require('fs'),
-  _ = require('lodash'),
-  log = require('npmlog'),
-  jsb = require('js-beautify').js_beautify,
-  args = process.argv.slice(2),
-  inFile = null,
-  outFile = null,
-  inPattern = /(.*)\.feature$/,
-  jsbOpts = {
-    "indent_size": 2,
-    "indent_char": " ",
-    "break_chained_methods": true
-  },
-  encoding = {encoding: 'utf8'};
+var app       = require('ez-bdd'),
+    fs        = require('fs'),
+    _         = require('underscore'),
+    log       = require('npmlog'),
+    jsb       = require('js-beautify').js_beautify,
+    args      = process.argv.slice(2),
+    inFile    = null,
+    outFile   = null,
+    inPattern = /(.*)\.feature$/,
+    jsbOpts   = {
+      "indent_size":           2,
+      "indent_char":           " ",
+      "break_chained_methods": true
+    },
+    encoding  = {encoding: 'utf8'};
 
 log.heading = '[ez-bdd]';
 

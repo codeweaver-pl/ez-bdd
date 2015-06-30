@@ -1,37 +1,37 @@
 'use strict';
 
-var _ = require('lodash'),
-  Lexer = require('gherkin').Lexer('en'),
-  log = new require('npmlog');
+var _     = require('underscore'),
+    Lexer = require('gherkin').Lexer('en'),
+    log   = new require('npmlog');
 
 function GherkinModel() {
 
-  this.Feature = Feature;
-  this.Background = Background;
-  this.Scenario = Scenario;
+  this.Feature         = Feature;
+  this.Background      = Background;
+  this.Scenario        = Scenario;
   this.ScenarioOutline = ScenarioOutline;
 
   function Feature(name, description) {
-    this.name = name;
+    this.name        = name;
     this.description = description;
-    this.background = undefined;
-    this.scenarios = [];
-    this.scenario = function (scenario) {
+    this.background  = undefined;
+    this.scenarios   = [];
+    this.scenario    = function (scenario) {
       this.scenarios.push(scenario);
     };
   }
 
   function Background() {
     this.steps = [];
-    this.step = function (step, value) {
+    this.step  = function (step, value) {
       this.steps.push({step: step, value: value});
     };
   }
 
   function Scenario(name) {
-    this.name = name;
+    this.name  = name;
     this.steps = [];
-    this.step = function (step, value) {
+    this.step  = function (step, value) {
       this.steps.push({step: step, value: value, type: stepType(this.steps)});
       function stepType(steps) {
         return hasStepType(steps, 'Then ') ? 'Then' : hasStepType(steps, 'When ') ? 'When' : 'Given';
@@ -45,11 +45,11 @@ function GherkinModel() {
   }
 
   function ScenarioOutline(name) {
-    this.base = Scenario;
+    this.base       = Scenario;
     this.base(name);
-    this.examples = [];
+    this.examples   = [];
     this.exampleDef = null;
-    this.example = function (example) {
+    this.example    = function (example) {
       if (_.isNull(this.exampleDef)) {
         this.exampleDef = example;
       } else {
@@ -63,23 +63,23 @@ function GherkinModel() {
 
 function parse(feature) {
 
-  var spec = null,
-    background = null,
-    scenario = null,
-    gm = new GherkinModel();
+  var spec       = null,
+      background = null,
+      scenario   = null,
+      gm         = new GherkinModel();
 
   new Lexer({
-    feature: onFeature,
-    background: onBackground,
-    scenario: onScenario,
+    feature:          onFeature,
+    background:       onBackground,
+    scenario:         onScenario,
     scenario_outline: onScenario,
-    step: onStep,
-    row: onRow,
-    eof: onEof,
-    examples: _.noop,
-    comment: _.noop,
-    tag: _.noop,
-    doc_string: _.noop
+    step:             onStep,
+    row:              onRow,
+    eof:              onEof,
+    examples:         _.noop,
+    comment:          _.noop,
+    tag:              _.noop,
+    doc_string:       _.noop
   }).scan(feature);
 
   return spec;
