@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore'),
+var _ = require('lodash'),
   Lexer = require('gherkin').Lexer('en'),
   log = new require('npmlog');
 

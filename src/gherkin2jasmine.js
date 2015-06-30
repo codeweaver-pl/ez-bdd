@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('underscore'),
+var _ = require('lodash'),
   log = require('npmlog');
 
 log.heading = '[g2j]';

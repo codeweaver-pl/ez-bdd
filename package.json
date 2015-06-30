@@ -6,14 +6,14 @@
     "gherkin": "~2.12",
     "jasmine-custom-message": "~0.7.3",
     "js-beautify": "~1.5",
+    "lodash": "^3.9.3",
     "npmlog": "~1.2",
     "protractor": "~1.8",
-    "sprintf": "latest",
-    "underscore": "latest"
+    "sprintf": "latest"
   },
   "devDependencies": {
     "jasmine-node": "2.0.0",
-    "jasmine-reporters": "2.0.6"
+    "jasmine-reporters": "^2.0"
   },
   "repository": {
     "type": "git",

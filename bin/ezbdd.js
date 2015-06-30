@@ -2,7 +2,7 @@
 "use strict";
 var app = require('ez-bdd'),
   fs = require('fs'),
-  _ = require('underscore'),
+  _ = require('lodash'),
   log = require('npmlog'),
   jsb = require('js-beautify').js_beautify,
   args = process.argv.slice(2),

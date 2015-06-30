@@ -1,6 +1,6 @@
 "use strict";
 
-var _ = require('underscore'),
+var _ = require('lodash'),
   $s = require('./selectors'),
   featureAsSpec = require('./gherkin2jasmine'),
   gm = require('./gherkin-model');
