@@ -1,77 +1,62 @@
 "use strict";
 
-var _ = require('lodash'),
-  $s = require('./selectors'),
-  featureAsSpec = require('./gherkin2jasmine'),
-  gm = require('./gherkin-model');
+var _             = require('lodash'),
+    $s            = require('./selectors');
 
 global = new Function('return this')(); // jshint ignore:line
 
+module.exports.featureAsSpec = require('./gherkin2jasmine');
+module.exports.parseGherkin  = require('./gherkin-model').parse;
+
 if (global.browser) {
+
   require('./cases');
-  browser.getProcessedConfig().then(onProcessedConfig);
-} else {
-  module.exports = {
-    featureAsSpec: featureAsSpec,
-    parseGherkin: gm.parse
-  };
+
+  module.exports.allHailThePopupOfDoom = allHailThePopupOfDoom;
+  module.exports.currentUrl            = currentUrl;
+  module.exports.goTo                  = goTo;
+  module.exports.ui                    = ui;
 }
 
-function onProcessedConfig(processedConfig) {
+function goTo(url) {
+  browser.driver.get(browser.baseUrl + url);
+  allHailThePopupOfDoom();
+  browser.waitForAngular();
+}
 
-  module.exports = {
-    allHailThePopupOfDoom: allHailThePopupOfDoom,
-    currentUrl: currentUrl,
-    goTo: goTo,
-    ui: ui,
-    featureAsSpec: featureAsSpec,
-    parseGherkin: gm.parse
-  };
+function allHailThePopupOfDoom() {
 
-  function currentUrl() {
-    return browser.driver.getCurrentUrl().then(function (url) {
-      return url.slice(baseUrl().length);
+  var popupOfDoom = browser.switchTo().alert();
+
+  if (popupOfDoom) {
+    popupOfDoom.accept();
+  }
+}
+
+function ui(def) {
+
+  function UI(uri) {
+    goTo(uri);
+  }
+
+  UI.prototype = Object.create(
+    _.pick(def, _.isFunction),
+    _.reduce(
+      _.mapObject(_.omit(def, _.isFunction), asGetSetProps),
+      _.extend,
+      {}));
+
+  return UI;
+
+  function asGetSetProps(fieldDefs, fieldType) {
+    return _.mapObject(fieldDefs, function (ngModelKey) {
+      return $s[fieldType](ngModelKey);
     });
   }
+}
 
-  function goTo(url) {
-    browser.driver.get(baseUrl() + url);
-    allHailThePopupOfDoom();
-    browser.waitForAngular();
-  }
-
-  function allHailThePopupOfDoom() {
-
-    var popupOfDoom = browser.switchTo().alert();
-
-    if (popupOfDoom) {
-      popupOfDoom.accept();
-    }
-  }
-
-  function ui(def) {
-
-    function UI(uri) {
-      goTo(uri);
-    }
-
-    UI.prototype = Object.create(
-      _.pick(def, _.isFunction),
-      _.reduce(
-        _.mapObject(_.omit(def, _.isFunction), asGetSetProps),
-        _.extend,
-        {}));
-
-    return UI;
-
-    function asGetSetProps(fieldDefs, fieldType) {
-      return _.mapObject(fieldDefs, function (ngModelKey) {
-        return $s[fieldType](ngModelKey);
-      });
-    }
-  }
-
-  function baseUrl() {
-    return _.isString(processedConfig.baseUrl) ? processedConfig.baseUrl : '';
-  }
+function currentUrl() {
+  return browser.driver.getCurrentUrl().then(function (url) {
+    return url.slice(browser.baseUrl.length);
+  });
 }
