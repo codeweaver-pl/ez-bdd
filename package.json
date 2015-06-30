@@ -1,6 +1,6 @@
 {
   "name": "ez-bdd",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "dependencies": {
     "codecov.io": "^0.1.2",
     "gherkin": "~2.12",
