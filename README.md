@@ -28,7 +28,7 @@ Even better, you're given a bunch of [Gherkin](https://github.com/cucumber/cucum
 source files describing all features under different scenarios. Now you want to
 write some automated tests.
 
-You can easily transform your Gherkin source files (like the one below)
+You can start by transforming your Gherkin source files (like the one below)
 
 ```gherkin
 # eating_cucubmers.feature
